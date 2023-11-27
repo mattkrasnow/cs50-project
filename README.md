@@ -1,3 +1,5 @@
 # cs50-project
 
-We have that dog in us!
+This is our CS50 project! 
+
+It will feature the CS50 duck
