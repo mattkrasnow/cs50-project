@@ -1,35 +1,31 @@
 import pygame
 import sys
+import cv2
+from duck import Duck
 
 pygame.init()
 
-LENGTH = 480
-WIDTH = 640
+HEIGHT = 1080
+WIDTH = 1920
 BACKGROUND = (255,255,255)
 
 
 # define aspects of the window
-screen = pygame.display.set_mode((WIDTH, LENGTH))
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('CS50 Duck to the Rescue')
 
-# create the image of the duck
-duckImg = pygame.image.load("cs50duck.png")
-#duckImg = pygame.transform.scale(duckImg, )
-
-
-# function to draw the duck
-def duck(x,y):
-    screen.blit(duckImg, (x,y) )
-
-
-# set initial position of duck
-xpos = (400)
-ypos = (400)
-
+# intialize duck
+duck = Duck(400, 1080)
+clock = pygame.time.Clock()
 
 run = True
 while run:
-    
+    clock.tick(60)
+    if duck.y >= 1080 - duck.h:
+        duck.y = 1080 - duck.h
+        duck.jumping = False
+
+    duck.move()
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -37,7 +33,7 @@ while run:
    
     #draw the duck in the game
     screen.fill(BACKGROUND)
-    duck(20,60)
+    duck.draw(screen)
 
 
     pygame.display.update()
