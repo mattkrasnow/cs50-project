@@ -1,7 +1,7 @@
 import pygame
 
 class Enemy(object):
-    def __init__(self, x, y):
+    def __init__(self, x, y, screenwidth, screenheight):
         self.x = x
         self.y = y
         self.vel = 0
@@ -17,6 +17,8 @@ class Enemy(object):
         self.h = self.imgR.get_height()
         self.w = self.imgR.get_width()
         self.dir = 'r'
+        self.screenwidth = screenwidth
+        self.screenheight = screenheight
 
     def display(self, win):
         if self.dir == 'r':
@@ -27,7 +29,7 @@ class Enemy(object):
     def move(self, duck):
         if duck.x + duck.w/2 > self.x + self.w/2:
             self.dir = 'r'
-            if self.x < 800 - self.w:
+            if self.x < self.screenwidth - self.w:
                 self.vel += self.xaccel
         else:
             self.dir = 'l'
@@ -47,7 +49,7 @@ class Enemy(object):
         if self.x <= 0:
             self.x = 0
             self.vel = 0
-        if self.x >= 800 - self.w:
-            self.x = 800 - self.w
+        if self.x >= self.screenwidth - self.w:
+            self.x = self.screenwidth - self.w
             self.vel = 0
           

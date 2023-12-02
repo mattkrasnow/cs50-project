@@ -1,7 +1,7 @@
 import pygame
 
 class Duck(object):
-    def __init__(self, x, y):
+    def __init__(self, x, y, screenwidth, screenheight):
         self.x = x
         self.y = y
         self.vel = 0
@@ -17,6 +17,8 @@ class Duck(object):
         self.imgL = pygame.transform.flip(self.imgL, flip_x=True, flip_y=False)
         self.h = self.imgR.get_height()
         self.w = self.imgR.get_width()
+        self.screenwidth = screenwidth
+        self.screenheight = screenheight
 
     def display(self, win):
         if self.dir == 'r':
@@ -25,11 +27,15 @@ class Duck(object):
             win.blit(self.imgL, (self.x, self.y))
     
     def move(self):
+        if self.y >= self.screenheight - self.h:
+            self.y = self.screenheight - self.h
+            self.jumping = False
+
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT] and self.x > 10:
             self.vel -= self.xaccel
             self.dir = "l"
-        if keys[pygame.K_RIGHT] and self.x < 800 - self.w:
+        if keys[pygame.K_RIGHT] and self.x < self.screenwidth - self.w:
             self.vel += self.xaccel
             self.dir = "r"
         if keys[pygame.K_UP] and self.jumping == False:
@@ -41,8 +47,8 @@ class Duck(object):
         if self.x <= 0:
             self.x = 0
             self.vel = 0
-        if self.x >= 800 - self.w:
-            self.x = 800 - self.w
+        if self.x >= self.screenwidth - self.w:
+            self.x = self.screenwidth - self.w
             self.vel = 0
         if self.jumping == True:
             self.yvel -= self.yaccel
