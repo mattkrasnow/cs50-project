@@ -3,7 +3,7 @@ import random
 
 class Answer():
     # constructor that sets the answer objects
-    def __innit__(self, input, x, y, isCorrect):
+    def __init__(self, input, x, y, isCorrect):
         self.answerText = input
         self.x = x - 25
         self.y = y - 25
