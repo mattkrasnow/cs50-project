@@ -13,6 +13,6 @@ class Bullet(object):
     
     def move(self):
         if self.d == "l":
-            self.x += self.v
-        else:
             self.x -= self.v
+        else:
+            self.x += self.v
