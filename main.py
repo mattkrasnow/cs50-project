@@ -23,6 +23,7 @@ currentLevelBlocks = [Block(0, 500, 200, 30), Block(400, 300, 100, 20)]
 enemies = [Enemy(400, 300, WIDTH, HEIGHT)]
 level = 0
 run = True
+bullets = []
 while run:
     clock.tick(60)
     duck.move()
@@ -50,12 +51,12 @@ while run:
 
 
     #draw a bullet at the location of the duck
-    bullets = []
+    
     if pygame.key.get_pressed()[pygame.K_SPACE]:
-        bullets.append = Bullet(duck.x, duck.y, duck.dir)
+        bullets.append(Bullet(duck.x, duck.y, duck.dir))
         
     for bullet in bullets:
-        bullet.display()
+        bullet.display(screen)
         bullet.move()
 
     pygame.display.update()

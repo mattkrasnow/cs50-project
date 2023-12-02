@@ -6,7 +6,7 @@ class Bullet(object):
         self.y = y
         self.d = d
         self.r = 4
-        self.v = 15
+        self.v = 10
 
     def display(self, screen):
         pygame.draw.circle(screen, (0, 0, 120), (int(self.x), int(self.y)), self.r)
