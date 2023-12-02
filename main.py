@@ -11,6 +11,8 @@ pygame.init()
 HEIGHT = 600
 WIDTH = 800
 BACKGROUND = (255,255,255)
+btime = 15
+
 
 
 # define aspects of the window
@@ -40,7 +42,6 @@ while run:
 
 
     #draw a bullet at the location of the duck
-    btime = 15
     if btime < 15:
         btime += 1
     if pygame.key.get_pressed()[pygame.K_SPACE] and btime == 15:
