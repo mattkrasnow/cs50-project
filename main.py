@@ -1,6 +1,5 @@
 import pygame
 import sys
-import cv2
 from duck import Duck
 from block import Block
 
