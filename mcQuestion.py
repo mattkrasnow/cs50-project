@@ -6,20 +6,22 @@ from block import Block
 
 class McQuestion():
     def __init__ (self, question, answers, correctIndex, screenWidth, screenHeight):
-        blocks = [Block(0, 250, 200, 20), Block(600, 250, 200, 20), Block(300, 400, 200, 20), Block(200, 550, 100, 20), Block(500, 550, 100, 20)]
+        blocks = [Block(0, screenHeight-350, 200, 20), Block(screenWidth - 200, screenHeight-350, 200, 20), Block(screenWidth/2 - 100, screenHeight-200, 200, 20), Block(screenWidth/2-200, screenHeight-50, 100, 20), Block(screenWidth/2+100, screenHeight-50, 100, 20)]
         self.level = Level([], blocks, 100000, 100000, screenWidth, screenHeight)
-        positions = [[100, 100], [100, 500], [700, 100], [700, 500]]
+        positions = [[100, 100], [100, screenHeight-100], [screenWidth-100, 100], [screenWidth-100, screenHeight-100]]
         self.answers = []
         for i in range(4):
             ind = random.randint(0, 3-i)
             self.answers.append(Answer(answers[i], positions[ind][0], positions[ind][1], i == correctIndex))
             del positions[ind]
         self.q = question
-        self.spawnX = 300
+        self.spawnX = screenWidth/2
         self.spawnY = 200
         self.levelComplete = False
         self.levelFailed = False
         self.enemyHit = False
+        self.screenwidth = screenWidth
+        self.screenheight = screenHeight
 
 
     def display(self, screen):
@@ -31,7 +33,7 @@ class McQuestion():
         font = pygame.font.Font('SourceCodePro-SemiBold.ttf', 12)
         text = font.render(self.q, True, (200,200,200), (100,100,100))
         aRect = text.get_rect()
-        aRect.center = (400, 100)
+        aRect.center = (self.screenwidth/2, 100)
         screen.blit(text, aRect)
     
     def levelPhysics(self, duck):

@@ -9,8 +9,7 @@ from mcquestion import McQuestion
 
 pygame.init()
 
-HEIGHT = 600
-WIDTH = 800
+
 BACKGROUND = (100,100,100)
 btime = 15
 hitCooldown = 60
@@ -19,7 +18,9 @@ hp = 10
 
 
 # define aspects of the window
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+screen = pygame.display.set_mode((960, 600), pygame.FULLSCREEN)
+WIDTH, HEIGHT = screen.get_size()
+print(str(WIDTH) + ', ' + str(HEIGHT))
 pygame.display.set_caption('CS50 Duck to the Rescue')
 
 # intialize duck
@@ -98,6 +99,8 @@ while run:
     for bullet in bullets:
         bullet.display(screen)
         bullet.move()
+        if bullet.x < -100 or bullet.x > WIDTH + 100:
+            bullets.pop(bullets.index(bullet))
     duck.display(screen)
 
     pygame.display.update()
