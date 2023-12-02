@@ -44,9 +44,10 @@ while run:
     for enemy in enemies:
         if enemy.y >= HEIGHT - enemy.h:
             enemy.y = HEIGHT - enemy.h
-        enemy.jumping = True
-        enemy.display(screen)
+            enemy.jumping = False
         enemy.move(duck)
+        enemy.display(screen)
+        enemy.jumping = True   
         for block in currentLevelBlocks:
             block.objectCollision(enemy)
 
