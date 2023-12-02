@@ -15,8 +15,8 @@ class Duck(object):
         self.imgR = pygame.transform.scale_by(duckImg, 0.2)
         self.imgL = self.imgR.copy()
         self.imgL = pygame.transform.flip(self.imgL, flip_x=True, flip_y=False)
-        self.h = self.img.get_height()
-        self.w = self.img.get_width()
+        self.h = self.imgR.get_height()
+        self.w = self.imgR.get_width()
 
     def display(self, win):
         if self.dir == 'r':
