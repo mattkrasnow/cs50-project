@@ -18,6 +18,7 @@ pygame.display.set_caption('CS50 Duck to the Rescue')
 duck = Duck(400, 600)
 clock = pygame.time.Clock()
 currentLevelBlocks = [Block(0, 500, 200, 30), Block(400, 300, 100, 20)]
+level = 0
 run = True
 while run:
     clock.tick(60)
