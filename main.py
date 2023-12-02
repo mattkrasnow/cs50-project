@@ -2,6 +2,7 @@ import pygame
 import sys
 from duck import Duck
 from block import Block
+from enemy import Enemy
 
 pygame.init()
 
@@ -18,6 +19,7 @@ pygame.display.set_caption('CS50 Duck to the Rescue')
 duck = Duck(400, 600)
 clock = pygame.time.Clock()
 currentLevelBlocks = [Block(0, 500, 200, 30), Block(400, 300, 100, 20)]
+enemies = [Enemy(400, 300)]
 level = 0
 run = True
 while run:
@@ -37,8 +39,16 @@ while run:
     duck.display(screen)
     duck.jumping = True
     for block in currentLevelBlocks:
-       block.duckCollision(duck)
+       block.objectCollision(duck)
        block.display(screen)
+    for enemy in enemies:
+        if enemy.y >= HEIGHT - enemy.h:
+            enemy.y = HEIGHT - enemy.h
+        enemy.jumping = True
+        enemy.display(screen)
+        enemy.move(duck)
+        for block in currentLevelBlocks:
+            block.objectCollision(enemy)
 
     pygame.display.update()
 

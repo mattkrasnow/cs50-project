@@ -4,6 +4,11 @@ class Enemy(object):
     def __init__(self, x, y):
         self.x = x
         self.y = y
+        self.vel = 0
+        self.xaccel = 0.075
+        self.jumping = False
+        self.yaccel = 0.3
+        self.yvel = 0
 
         beaverImg = pygame.image.load("beaversprite.png").convert_alpha()
         self.imgL = pygame.transform.scale_by(beaverImg, 0.5)
@@ -22,5 +27,22 @@ class Enemy(object):
     def move(self, duck):
         if duck.x + duck.w/2 > self.x + self.w/2:
             self.dir = 'r'
+            if self.x < 800 - self.w:
+                self.vel += self.xaccel
         else:
             self.dir = 'l'
+            if self.x > 10:
+                self.vel -= self.xaccel
+
+        if self.jumping == False:
+            self.vel *= 0.95
+        self.x += self.vel
+        if self.x <= 0:
+            self.x = 0
+            self.vel = 0
+        if self.x >= 800 - self.w:
+            self.x = 800 - self.w
+            self.vel = 0
+        if self.jumping == True:
+            self.yvel -= self.yaccel
+            self.y -= self.yvel    
