@@ -19,21 +19,22 @@ class Block(object):
             if duck.jumping == False:
                 #duck.jumping = True
                 duck.yvel = 0
-        if duck.x >= self.x - duck.w and duck.x <= self.x + self.w and duck.y >= self.y + 5 and duck.y < self.y + self.h:
+        if duck.x >= self.x - duck.w and duck.x <= self.x + self.w and duck.y >= self.y - duck.h + 5 and duck.y < self.y + self.h:
             duck.yvel = 0
-            duck.y = self.y + self.h
-        if duck.x >= self.x - duck.w and duck.x <= self.x + self.w and duck.y + duck.yvel >= self.y + 5 and duck.y + duck.yvel < self.y + self.h:
+            
+            #duck.y = self.y + self.h
+        if duck.x >= self.x - duck.w and duck.x <= self.x + self.w and duck.y + duck.yvel >= self.y - duck.h + 5 and duck.y + duck.yvel < self.y + self.h:
             duck.yvel = 0
-            duck.y = self.y + self.h
-        if duck.x >= self.x - duck.w and duck.x <= self.x + self.w and duck.y < self.y - self.h-5 and duck.y > self.y-duck.h:
+            #duck.y = self.y + self.h
+        if duck.x >= self.x - duck.w and duck.x <= self.x + self.w and duck.y < self.y - 0.9*duck.h and duck.y > self.y-duck.h:
             duck.y = self.y - duck.h-1
             duck.jumping = False
             duck.yvel = 0
         if duck.x >= self.x - duck.w and duck.x <= self.x + self.w and duck.y + duck.h < self.y and duck.y + duck.h > self.y - 5:
             duck.jumping = False
         if duck.x >= self.x - duck.w-1 and duck.x + 40 <= self.x + self.w and duck.y < self.y + self.h and duck.y + duck.h >= self.y:
-            duck.x = self.x - duck.w
+            duck.x = self.x - duck.w - 1
             duck.vel = 0
         if duck.x <= self.x + self.w and duck.x > self.x + duck.w and duck.y < self.y + self.h and duck.y + duck.h >= self.y:
-            duck.x = self.x + self.w
+            duck.x = self.x + self.w + 1
             duck.vel = 0
