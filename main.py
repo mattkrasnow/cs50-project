@@ -4,6 +4,7 @@ from duck import Duck
 from block import Block
 from enemy import Enemy
 from bullet import Bullet
+from level import Level
 
 pygame.init()
 
@@ -19,9 +20,7 @@ pygame.display.set_caption('CS50 Duck to the Rescue')
 # intialize duck
 duck = Duck(400, 600, WIDTH, HEIGHT)
 clock = pygame.time.Clock()
-currentLevelBlocks = [Block(0, 500, 200, 30), Block(400, 300, 100, 20)]
-enemies = [Enemy(400, 300, WIDTH, HEIGHT)]
-level = 0
+level = Level([Enemy(400, 300, WIDTH, HEIGHT), Enemy(200, 300, WIDTH, HEIGHT)], [Block(0, 500, 200, 30), Block(400, 300, 100, 20), Block(200, 400, 100, 10)], 700, 500, WIDTH, HEIGHT)
 run = True
 bullets = []
 while run:
@@ -36,18 +35,8 @@ while run:
     screen.fill(BACKGROUND)
     duck.display(screen)
     duck.jumping = True
-    for block in currentLevelBlocks:
-       block.objectCollision(duck)
-       block.display(screen)
-    for enemy in enemies:
-        if enemy.y >= HEIGHT - enemy.h:
-            enemy.y = HEIGHT - enemy.h
-            enemy.jumping = False
-        enemy.move(duck)
-        enemy.display(screen)
-        enemy.jumping = True   
-        for block in currentLevelBlocks:
-            block.objectCollision(enemy)
+    level.levelPhysics(duck)
+    level.display(screen)
 
 
     #draw a bullet at the location of the duck
