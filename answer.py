@@ -14,10 +14,10 @@ class Answer():
     def duckCollision(self, duck):
         # return  true if the duck is touching the answer object; otherwise return false
         # check if the duck is touching the answer object
-        if duck.w + duck.x > self.x and duck.x < self.x + self.w and duck.y + duck.h < self.h and duck.y > self.y + self.h:
+        if duck.w + duck.x > self.x and duck.x < self.x + self.w and duck.y + duck.h > self.y and duck.y < self.y + self.h:
             return True
         return False
     
     # display answer objects
     def display(self, screen):
-        pygame.draw.rect(screen, (256*random.random(),256*random.random(),256*random.random()), self.x, self.y, self.w, self.h)
+        pygame.draw.rect(screen, (255*random.random(),255*random.random(),255*random.random()), (self.x, self.y, self.w, self.h))

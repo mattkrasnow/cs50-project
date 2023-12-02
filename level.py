@@ -11,6 +11,7 @@ class Level(object):
         self.exit = Answer("", exitX, exitY, True)
         self.screenwidth = screenwidth
         self.screenheight = screenheight
+        self.levelComplete = False
     
     def levelPhysics(self, duck):
         for block in self.blocks:
@@ -24,8 +25,13 @@ class Level(object):
             for block in self.blocks:
                 block.objectCollision(enemy)
         
+        if(self.exit.duckCollision(duck)):
+            self.levelComplete = True
+        
     def display(self, screen):
         for block in self.blocks:
             block.display(screen)
         for enemy in self.enemies:
             enemy.display(screen)
+        if not self.levelComplete:
+            self.exit.display(screen)
