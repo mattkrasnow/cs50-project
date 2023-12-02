@@ -1,10 +1,13 @@
 import pygame
 import random
 from answer import Answer
-
+from level import Level
+from block import Block
 
 class Mqquestion():
-    def __init__ (self, question, answers, correctIndex):
+    def __init__ (self, question, answers, correctIndex, screenWidth, screenHeight):
+        blocks = [Block[100, 150, 100, 20], Block[500, 150, 100, 20] ]
+        self.level = Level([], blocks, 100000, 100000, screenWidth, screenHeight)
         self.a1 = Answer(answers[0], 100, 100, correctIndex == 1 )
         self.a2 = Answer(answers[1], 100, 500, correctIndex == 2 )
         self.a3 = Answer(answers[2], 500, 100, correctIndex == 3 )
