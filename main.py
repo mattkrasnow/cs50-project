@@ -46,7 +46,7 @@ while run:
         btime += 1
     if pygame.key.get_pressed()[pygame.K_SPACE] and btime == 15:
         btime = 0
-        bullets.append(Bullet(duck.x+duck.w, duck.y+duck.h, duck.dir))
+        bullets.append(Bullet(duck.x+duck.w/2, duck.y+duck.h/2, duck.dir))
         
     for bullet in bullets:
         bullet.display(screen)
