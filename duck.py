@@ -12,21 +12,26 @@ class Duck(object):
         self.dir = 'r'
 
         duckImg = pygame.image.load("cs50duck.png").convert_alpha()
-        self.img = pygame.transform.scale_by(duckImg, 0.2)
+        self.imgR = pygame.transform.scale_by(duckImg, 0.2)
+        self.imgL = self.imgR.copy()
+        self.imgL = pygame.transform.flip(self.imgL, flip_x=True, flip_y=False)
         self.h = self.img.get_height()
         self.w = self.img.get_width()
 
     def display(self, win):
-        win.blit(self.img, (self.x, self.y))
+        if self.dir == 'r':
+            win.blit(self.imgR, (self.x, self.y))
+        else:
+            win.blit(self.imgL, (self.x, self.y))
     
     def move(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT] and self.x > 10:
             self.vel -= self.xaccel
-            self.dire = "l"
+            self.dir = "l"
         if keys[pygame.K_RIGHT] and self.x < 800 - self.w:
             self.vel += self.xaccel
-            self.dire = "r"
+            self.dir = "r"
         if keys[pygame.K_UP] and self.jumping == False:
             self.jumping = True
             self.yvel = 10
