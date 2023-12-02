@@ -5,13 +5,13 @@ from duck import Duck
 
 pygame.init()
 
-HEIGHT = 1080
-WIDTH = 1920
+HEIGHT = 1000
+WIDTH = 800
 BACKGROUND = (255,255,255)
 
 
 # define aspects of the window
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+screen = pygame.display.set_mode((HEIGHT, WIDTH))
 pygame.display.set_caption('CS50 Duck to the Rescue')
 
 # intialize duck
