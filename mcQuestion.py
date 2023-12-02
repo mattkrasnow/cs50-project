@@ -13,28 +13,10 @@ class Mqquestion():
         self.q = question
 
 def display(self, screen):
-    
-    text = font.render(self.a1.answerText, True,  (0,255,0), (0,0,128))
-    aRect = text.get_rect()
-    screen.blit(text, aRect)
+
     self.a1.display()
-    
-
-    text = font.render(self.a2.answerText, True,  (0,255,0), (0,0,128))
-    aRect = text.get_rect()
-    screen.blit(text, aRect)        
     self.a2.display()
-
-
-    text = font.render(self.a3.answerText, True,  (0,255,0), (0,0,128))
-    aRect = text.get_rect()
-    screen.blit(text, aRect)  
     self.a3.display()
-
-
-    text = font.render(self.a3.answerText, True,  (0,255,0), (0,0,128))
-    aRect = text.get_rect()
-    screen.blit(text, aRect)  
     self.a4.display()
 
 
