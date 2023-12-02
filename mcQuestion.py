@@ -21,6 +21,7 @@ class McQuestion():
         self.levelFailed = False
         self.enemyHit = False
 
+
     def display(self, screen):
         self.level.display(screen)
 
@@ -43,6 +44,9 @@ class McQuestion():
                     self.levelFailed = True
     
     def bulletCollisions(self, bullets):
+        pass
+
+    def populateEnemies(self):
         pass
 
     # generate a level

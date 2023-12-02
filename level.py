@@ -5,8 +5,9 @@ from answer import Answer
 
 
 class Level(object):
-    def __init__(self, enemies, blocks, exitX, exitY, screenwidth, screenheight):
-        self.enemies = enemies
+    def __init__(self, enemyPos, blocks, exitX, exitY, screenwidth, screenheight):
+        self.enemyPos = enemyPos
+        self.enemies = []
         self.blocks = blocks
         self.exit = Answer("", exitX, exitY, True)
         self.screenwidth = screenwidth
@@ -16,6 +17,12 @@ class Level(object):
         self.spawnX = 100
         self.spawnY = 400
         self.enemyHit = False
+        self.populateEnemies()
+    
+    def populateEnemies(self):
+        self.enemies = []
+        for pos in self.enemyPos:
+            self.enemies.append(Enemy(pos[0], pos[1], self.screenwidth, self.screenheight))
     
     def levelPhysics(self, duck):
         for block in self.blocks:
