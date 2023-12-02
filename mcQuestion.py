@@ -2,7 +2,6 @@ import pygame
 import random
 from answer import Answer
 
-font = pygame.font.Font('freesansbold.ttf', 32)
 
 class Mqquestion():
     def __init__ (self, question, answers, correctIndex):
@@ -19,7 +18,7 @@ def display(self, screen):
     self.a3.display()
     self.a4.display()
 
-
+    font = pygame.font.Font('freesansbold.ttf', 32)
     text = font.render(self.q, True,  (0,255,0), (0,0,128))
     aRect = text.get_rect()
     screen.blit(text, aRect)
