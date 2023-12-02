@@ -11,7 +11,7 @@ pygame.init()
 
 HEIGHT = 600
 WIDTH = 800
-BACKGROUND = (255,255,255)
+BACKGROUND = (100,100,100)
 btime = 15
 
 
@@ -23,13 +23,23 @@ pygame.display.set_caption('CS50 Duck to the Rescue')
 # intialize duck
 duck = Duck(400, 600, WIDTH, HEIGHT)
 clock = pygame.time.Clock()
-levels = [Level([Enemy(400, 300, WIDTH, HEIGHT), Enemy(200, 300, WIDTH, HEIGHT)], [Block(0, 500, 200, 30), Block(400, 300, 100, 20), Block(200, 400, 100, 10)], 700, 500, WIDTH, HEIGHT), McQuestion('what is my name', ['max', 'macks', 'maax', 'ma'], 1, WIDTH, HEIGHT)]
+levels = [Level([Enemy(400, 300, WIDTH, HEIGHT), Enemy(200, 300, WIDTH, HEIGHT)], [Block(0, 500, 200, 30), Block(400, 300, 100, 20), Block(200, 400, 100, 10)], 700, 500, WIDTH, HEIGHT), McQuestion('what is my name', ['max', 'macks', 'maax', 'ma'], 0, WIDTH, HEIGHT), Level([], [], 10000, 10000, WIDTH, HEIGHT)]
 run = True
 bullets = []
 currentLevel = 0
 while run:
     if levels[currentLevel].levelComplete:
+        print("passed")
         currentLevel += 1
+        levels[currentLevel].levelComplete = False
+        levels[currentLevel].levelFailed = False
+        duck.x = levels[currentLevel].spawnX
+        duck.y = levels[currentLevel].spawnY
+    if levels[currentLevel].levelFailed:
+        print("failed")
+        currentLevel -= 1
+        levels[currentLevel].levelComplete = False
+        levels[currentLevel].levelFailed = False
         duck.x = levels[currentLevel].spawnX
         duck.y = levels[currentLevel].spawnY
     clock.tick(60)
@@ -41,7 +51,7 @@ while run:
    
     #draw the duck in the game
     screen.fill(BACKGROUND)
-    duck.display(screen)
+    
     duck.jumping = True
     levels[currentLevel].levelPhysics(duck)
     
@@ -58,6 +68,7 @@ while run:
     for bullet in bullets:
         bullet.display(screen)
         bullet.move()
+    duck.display(screen)
 
     pygame.display.update()
 

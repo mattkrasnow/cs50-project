@@ -12,6 +12,7 @@ class Level(object):
         self.screenwidth = screenwidth
         self.screenheight = screenheight
         self.levelComplete = False
+        self.levelFailed = False
         self.spawnX = 100
         self.spawnY = 400
     
