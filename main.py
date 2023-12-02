@@ -40,8 +40,11 @@ while run:
 
 
     #draw a bullet at the location of the duck
-    
-    if pygame.key.get_pressed()[pygame.K_SPACE]:
+    btime = 15
+    if btime < 15:
+        btime += 1
+    if pygame.key.get_pressed()[pygame.K_SPACE] and btime == 15:
+        btime = 0
         bullets.append(Bullet(duck.x, duck.y, duck.dir))
         
     for bullet in bullets:

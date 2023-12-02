@@ -9,7 +9,7 @@ class Bullet(object):
         self.v = 10
 
     def display(self, screen):
-        pygame.draw.circle(screen, (0, 0, 120), (int(self.x), int(self.y)), self.r)
+        pygame.draw.circle(screen, (255, 0, 0), (int(self.x), int(self.y)), self.r)
     
     def move(self):
         if self.d == "l":
