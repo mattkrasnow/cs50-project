@@ -1,4 +1,5 @@
 import pygame
+import cv2
 
 class Duck(object):
     def __init__(self, x, y):
@@ -10,12 +11,13 @@ class Duck(object):
         self.yaccel = 0.3
         self.yvel = 0
         self.dir = 'r'
+
         duckImg = pygame.image.load("cs50duck.png").convert_alpha()
-        self.img = pygame.transform.scale_by(duckImg, 0.3)
+        self.img = pygame.transform.scale_by(duckImg, 0.2)
         self.h = self.img.get_height()
         self.w = self.img.get_width()
 
-    def draw(self, win):
+    def display(self, win):
         win.blit(self.img, (self.x, self.y))
     
     def move(self):
@@ -23,20 +25,20 @@ class Duck(object):
         if keys[pygame.K_LEFT] and self.x > 10:
             self.vel -= self.xaccel
             self.dire = "l"
-        if keys[pygame.K_RIGHT] and self.x < 1920 - self.w:
+        if keys[pygame.K_RIGHT] and self.x < 800 - self.w:
             self.vel += self.xaccel
             self.dire = "r"
         if keys[pygame.K_UP] and self.jumping == False:
             self.jumping = True
-            self.yvel = 12
+            self.yvel = 10
         if self.jumping == False:
             self.vel *= 0.95
         self.x += self.vel
         if self.x <= 0:
             self.x = 0
             self.vel = 0
-        if self.x >= 1920 - self.w:
-            self.x = 1920 - self.w
+        if self.x >= 800 - self.w:
+            self.x = 800 - self.w
             self.vel = 0
         if self.jumping == True:
             self.yvel -= self.yaccel
