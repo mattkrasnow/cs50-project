@@ -6,12 +6,12 @@ from block import Block
 
 class McQuestion():
     def __init__ (self, question, answers, correctIndex, screenWidth, screenHeight):
-        blocks = [Block(100, 150, 100, 20), Block(500, 150, 100, 20)]
+        blocks = [Block(0, 250, 200, 20), Block(600, 250, 200, 20), Block(300, 400, 200, 20), Block(200, 550, 100, 20), Block(500, 550, 100, 20)]
         self.level = Level([], blocks, 100000, 100000, screenWidth, screenHeight)
         self.a1 = Answer(answers[0], 100, 100, correctIndex == 1 )
         self.a2 = Answer(answers[1], 100, 500, correctIndex == 2 )
-        self.a3 = Answer(answers[2], 500, 100, correctIndex == 3 )
-        self.a4 = Answer(answers[3], 500, 500, correctIndex == 4 )
+        self.a3 = Answer(answers[2], 700, 100, correctIndex == 3 )
+        self.a4 = Answer(answers[3], 700, 500, correctIndex == 4 )
         self.q = question
         self.spawnX = 300
         self.spawnY = 200
