@@ -7,7 +7,7 @@ HEIGHT = 600
 WIDTH = 800
 font = pygame.font.Font('freesansbold.ttf', 32)        
 
-
+# write into another file
 def write_to_file(filename, content):
     with open(filename, 'w') as f:
        f.write(content)

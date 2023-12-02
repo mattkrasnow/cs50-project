@@ -1,0 +1,19 @@
+McQuestion('Which is the correct header for a loop in c?', ['for(int i = 0, i < 5; i++)', 'for(int i = 0; i < 5; i++)', 'do while():', 'for i in range(5)'], 1, WIDTH, HEIGHT)
+
+McQuestion('Which is NOT a property of arrays in c?', ['Stores a list of items', 'Only stores items of the same type', 'Has dynamic size', 'Can be multidimensional'], 2, WIDTH, HEIGHT)
+
+McQuestion('Of the following, which is the best sorting algorithm?', ['QuickSort', 'MergeSort', 'BubbleSort', 'LinearSort'], 2, WIDTH, HEIGHT)
+
+McQuestion('Which piece of code should always follow a malloc() call?', ['calloc()', 'free()', 'A pointer', 'The stack'], 1, WIDTH, HEIGHT)
+
+McQuestion('In which case would a linked list be better than an array?', ['When creating a static-size list of objects', 'When there is limited available memory', 'When the length of the desired list is unknown', 'Never'], 2, WIDTH, HEIGHT)
+
+McQuestion('There is another crime in fiftyville! What is the first terminal command needed to find the suspect in the database fiftyville.db?', ['sqlite3 fiftyville.db', 'SELECT * FROM users', 'import sqlite3 from Python', 'SELECT * FROM fiftyville.db'], 0, WIDTH, HEIGHT)
+
+McQuestion('How can static websites change?', ['The developer makes changes to the code', 'The user interacts with the display via buttons', 'They cannot be changed once they are created', 'They can be changed at any time by many factors'], 0, WIDTH, HEIGHT)
+
+McQuestion('Which piece of code should always follow a malloc() call?', ['calloc()', 'free()', 'A pointer', 'The stack'], 1, WIDTH, HEIGHT)
+
+McQuestion('What is NOT a language used when using Flask?', ['JavaScript', 'HTML', 'CSS', 'C'], 3, WIDTH, HEIGHT)
+
+McQuestion('Which piece of code should always follow a malloc() call?', ['calloc()', 'free()', 'A pointer', 'The stack'], 1, WIDTH, HEIGHT)
