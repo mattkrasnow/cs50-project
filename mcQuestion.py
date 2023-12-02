@@ -3,6 +3,7 @@ import random
 from answer import Answer
 
 font = pygame.font.Font('freesansbold.ttf', 32)
+
 class Mqquestion():
     def __init__ (self, question, answers, correctIndex):
         self.a1 = Answer(answers[0], 100, 100, correctIndex == 1 )
