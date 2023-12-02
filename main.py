@@ -3,6 +3,7 @@ import sys
 from duck import Duck
 from block import Block
 from enemy import Enemy
+from bullet import Bullet
 
 pygame.init()
 
@@ -50,6 +51,15 @@ while run:
         enemy.jumping = True   
         for block in currentLevelBlocks:
             block.objectCollision(enemy)
+
+
+    #draw a bullet at the location of the duck
+    bullets = []
+    if pygame.key.get_pressed()[pygame.K_SPACE]:
+        b = Bullet(duck.x, duck.y, duck.dir)
+        
+    for bullet in bullets:
+        bullet.move()
 
     pygame.display.update()
 
