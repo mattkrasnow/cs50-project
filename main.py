@@ -22,10 +22,15 @@ pygame.display.set_caption('CS50 Duck to the Rescue')
 # intialize duck
 duck = Duck(400, 600, WIDTH, HEIGHT)
 clock = pygame.time.Clock()
-level = Level([Enemy(400, 300, WIDTH, HEIGHT), Enemy(200, 300, WIDTH, HEIGHT)], [Block(0, 500, 200, 30), Block(400, 300, 100, 20), Block(200, 400, 100, 10)], 700, 500, WIDTH, HEIGHT)
+levels = [Level([Enemy(400, 300, WIDTH, HEIGHT), Enemy(200, 300, WIDTH, HEIGHT)], [Block(0, 500, 200, 30), Block(400, 300, 100, 20), Block(200, 400, 100, 10)], 700, 500, WIDTH, HEIGHT), Level([], [Block(300, 500, 200, 50)], 10000, 10000, WIDTH, HEIGHT)]
 run = True
 bullets = []
+currentLevel = 0
 while run:
+    if levels[currentLevel].levelComplete:
+        currentLevel += 1
+        duck.x = 100
+        duck.y = 400
     clock.tick(60)
     duck.move()
     
@@ -37,8 +42,9 @@ while run:
     screen.fill(BACKGROUND)
     duck.display(screen)
     duck.jumping = True
-    level.levelPhysics(duck)
-    level.display(screen)
+    levels[currentLevel].levelPhysics(duck)
+    
+    levels[currentLevel].display(screen)
 
 
     #draw a bullet at the location of the duck
