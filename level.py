@@ -12,6 +12,8 @@ class Level(object):
         self.screenwidth = screenwidth
         self.screenheight = screenheight
         self.levelComplete = False
+        self.spawnX = 100
+        self.spawnY = 400
     
     def levelPhysics(self, duck):
         for block in self.blocks:
