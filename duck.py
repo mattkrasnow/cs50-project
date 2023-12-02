@@ -1,5 +1,4 @@
 import pygame
-import cv2
 
 class Duck(object):
     def __init__(self, x, y):
