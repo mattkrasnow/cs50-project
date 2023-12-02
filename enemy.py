@@ -27,6 +27,9 @@ class Enemy(object):
             win.blit(self.imgL, (self.x, self.y))
     
     def move(self, duck):
+        if self.y >= self.screenheight - self.h:
+            self.y = self.screenheight - self.h
+            self.jumping = False
         if duck.x + duck.w/2 > self.x + self.w/2:
             self.dir = 'r'
             if self.x < self.screenwidth - self.w:
