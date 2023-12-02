@@ -1,4 +1,5 @@
 import pygame
+from hpbar import HPBar
 
 class Duck(object):
     def __init__(self, x, y, screenwidth, screenheight):
@@ -10,6 +11,9 @@ class Duck(object):
         self.yaccel = 0.3
         self.yvel = 0
         self.dir = 'r'
+        self.hp = 10
+        self.maxHp = 10
+        self.hpBar = HPBar(10)
 
         duckImg = pygame.image.load("cs50duck.png").convert_alpha()
         self.imgR = pygame.transform.scale_by(duckImg, 0.2)
@@ -25,6 +29,8 @@ class Duck(object):
             win.blit(self.imgR, (self.x, self.y))
         else:
             win.blit(self.imgL, (self.x, self.y))
+        self.hpBar.hp = self.hp
+        self.hpBar.display(win, self.x + self.w/2, self.y - 30)
     
     def move(self):
         if self.y >= self.screenheight - self.h:

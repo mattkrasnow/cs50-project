@@ -11,7 +11,7 @@ class Block(object):
         pygame.draw.rect(win, (0, 0, 0), (self.x, self.y, self.w, self.h))
 
     def objectCollision(self, object):
-        if object.x <= self.x-20 or object.x >= self.x + self.w:
+        if object.x + object.w <= self.x or object.x >= self.x + self.w:
             if object.jumping == False:
                 #object.jumping = True
                 object.yvel = 0
@@ -32,7 +32,11 @@ class Block(object):
             object.yvel = 0
         if object.x >= self.x - object.w and object.x <= self.x + self.w and object.y + object.h < self.y and object.y + object.h > self.y - 5:
             object.jumping = False
-        if object.x >= self.x - object.w-1 and object.x + 40 <= self.x + self.w and object.y < self.y + self.h and object.y + object.h >= self.y:
+        
+        if object.x - 10 >= self.x - object.w and object.x + 10 <= self.x + self.w and object.y < self.y + self.h and object.y + object.h >= self.y + self.h - 12:
+            object.yvel = 0
+            object.y = self.y + self.h
+        elif object.x >= self.x - object.w-1 and object.x + 40 <= self.x + self.w and object.y < self.y + self.h and object.y + object.h >= self.y:
             object.x = self.x - object.w - 1
             object.vel = 0
         if object.x <= self.x + self.w and object.x > self.x + object.w and object.y < self.y + self.h and object.y + object.h >= self.y:

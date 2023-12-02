@@ -15,10 +15,12 @@ class Level(object):
         self.levelFailed = False
         self.spawnX = 100
         self.spawnY = 400
+        self.enemyHit = False
     
     def levelPhysics(self, duck):
         for block in self.blocks:
             block.objectCollision(duck)
+        self.enemyHit = False
         for enemy in self.enemies:
             if enemy.y >= self.screenheight - enemy.h:
                 enemy.y = self.screenheight - enemy.h
@@ -27,9 +29,20 @@ class Level(object):
             enemy.jumping = True   
             for block in self.blocks:
                 block.objectCollision(enemy)
+            if enemy.duckCollision(duck):
+                self.enemyHit = True
         
         if(self.exit.duckCollision(duck)):
             self.levelComplete = True
+        
+    def bulletCollisions(self, bullets):
+        for enemy in self.enemies:
+            for bullet in bullets:
+                if bullet.enemyCollision(enemy):
+                    enemy.hp -= 1
+                    bullets.pop(bullets.index(bullet))
+                    if enemy.hp == 0:
+                        self.enemies.pop(self.enemies.index(enemy))
         
     def display(self, screen):
         for block in self.blocks:

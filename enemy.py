@@ -1,4 +1,5 @@
 import pygame
+from hpbar import HPBar
 
 class Enemy(object):
     def __init__(self, x, y, screenwidth, screenheight):
@@ -9,6 +10,9 @@ class Enemy(object):
         self.jumping = False
         self.yaccel = 0.3
         self.yvel = 0
+        self.hp = 6
+        self.maxHp = 6
+        self.hpBar = HPBar(6)
 
         beaverImg = pygame.image.load("beaversprite.png").convert_alpha()
         self.imgL = pygame.transform.scale_by(beaverImg, 0.3)
@@ -25,6 +29,8 @@ class Enemy(object):
             win.blit(self.imgR, (self.x, self.y))
         else:
             win.blit(self.imgL, (self.x, self.y))
+        self.hpBar.hp = self.hp
+        self.hpBar.display(win, self.x + self.w/2, self.y - 30)
     
     def move(self, duck):
         if self.y >= self.screenheight - self.h:
@@ -55,4 +61,8 @@ class Enemy(object):
         if self.x >= self.screenwidth - self.w:
             self.x = self.screenwidth - self.w
             self.vel = 0
-          
+        
+    def duckCollision(self, duck):
+        if duck.w + duck.x > self.x and duck.x < self.x + self.w and duck.y + duck.h > self.y and duck.y < self.y + self.h:
+            return True
+        return False

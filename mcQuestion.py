@@ -19,6 +19,7 @@ class McQuestion():
         self.spawnY = 200
         self.levelComplete = False
         self.levelFailed = False
+        self.enemyHit = False
 
     def display(self, screen):
         self.level.display(screen)
@@ -26,7 +27,7 @@ class McQuestion():
         for a in self.answers:
             a.display(screen)
 
-        font = pygame.font.Font('SourceCodePro-SemiBold.ttf', 32)
+        font = pygame.font.Font('SourceCodePro-SemiBold.ttf', 12)
         text = font.render(self.q, True, (200,200,200), (100,100,100))
         aRect = text.get_rect()
         aRect.center = (400, 100)
@@ -40,5 +41,8 @@ class McQuestion():
                     self.levelComplete = True
                 else:
                     self.levelFailed = True
+    
+    def bulletCollisions(self, bullets):
+        pass
 
     # generate a level
