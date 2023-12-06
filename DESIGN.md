@@ -5,7 +5,15 @@ This is our CS50 project!
 
 - [Premise](#premise)
 - [Project Manual](#project-manual)
-    - [block.py]
+    - [block.py](#blockpy)
+    - [boss.py](#bosspy)
+    - [bullet.py](#bulletpy)
+    - [duck.py](#duckpy)
+    - [enemy.py](#enemypy)
+    - [hpbar.py](#hpbarpy)
+    - [level.py](#levelpy)
+    - [main.py](#mainpy)
+    - [mcquestion.py](#mcquestionpy)
 
 
 
@@ -35,11 +43,14 @@ When called through a Block object, the .display function shows the block on the
 .objectCollision
 When called through a block object, the .object collision function checks if the block is in contact with another entity(player or enemy). This prevents entities from passing through blocks, allows them to stand/jump on blocks. Essentially, giving each level structure. 
 
+Why?
+Blocks allow the player to interact with the world--it makes each level unique and interesting!
+
 ## boss.py
 Overview: The boss.py file allows for the creation of the final boss. In game, the boss is an entity displayed with a health bar and the MIT logo. It is the final enemy and the end of the game.
 
 Construction:
-The boss is constructed with the MIT beaver, fitted to the screen, with full health, at a set point on the screen. It also holds the booleans that tell if the level has been completed. It also acts as an Enemy object, which is logical because it is intuitively a special type of enemy. 
+The boss is constructed with the MIT beaver, fitted to the screen, with full health, at a set point on the screen. It also holds the booleans that tell if the level has been completed. It uses an Enemy object to have a hitbox for the boss, which is logical because it is intuitively a special type of enemy. 
 
 Functions:
 .populateEnemies
@@ -54,27 +65,140 @@ When the user shoots the boss the boss takes damage to the leahbar, the bullet d
 .display
 Displays the boss on the screen with its healthbar. Displays the blocks in the level as well. 
 
+Why?
+The boss level gives a satisfying conclusion to a job well done and a legendary performance by the player!
+
 
 ## bullet.py
 Overview:
 The bullet file has a Bulllet class that creates in-game bullet objects. 
 
-Constructions
+Construction:
+Bullet objects have screen positions and speeds as dictated by the two pairs of parameters. They are represented by images of the bullets.
+
+Functions:
+.display
+Displays the bullet object on screen
+
+.move
+Moves the bullet with respect to the direction it was shot and its speed.
+
+.enemyCollision
+Returns true if the bullet is in contact with another object. 
+
+Why?
+Bullets allow for another dimension of user interactivity--the gameplay evolved to having both dodging enemies and striking them down!
 
 
 ## duck.py
+Overview:
+Create duck objects - aka the player. 
+
+Construction:
+Duck objects need to have an inputted position to start at. All otehr properties such as the image used, speed, and HP bar are intrensic to all Duck objects. 
+
+Functions:
+
+.display
+Shows the duck on screen
+
+.move
+moves the duck based on the user's arrowkey inputs. 
+
+Why?
+Every show needs a star: enter the CS50 Duck!
 
 ## enemy.py
+Overview:
+The enemies that show up on the screen during levels. Under the hood, these are hitboxes that can do damage to the player. They obstruct the user's path.
+
+Construction:
+Enemies are constructed on the screen at designated positions with the MIT beaver icon as their in-game representation. 
+
+Functions:
+.display
+Show the enemy on the screen
+
+.move
+Move the enemy towards the player without user input.
+
+.duckCollision
+Return true when it hits the duck. This allows the duck to take damage. 
+
+Why?
+The game needs a challenge--there's a reason a hero as strong as the CS50 duck is needed to save the day. 
 
 ## hpbar.py
+Overview: Player, enemies, and the boss need a visual measure of their health! The HP bar is a common object that solves this problem. 
+
+Construction:
+Create a HP bar object that has the designated amount of health (parameter)
+
+.display
+Display the HPbar above its corresponding entity.
+
+Why?
+Having limited health adds an additional challenge. It raises the stakes--the threat of death is real!
+
 
 ## level.py
+Overiew: 
+We decided to have different Level objects for each level because this allows for a very modular game--we can add/remove levels at any point without changing the others. This was particudlarly helpful in helping us hit our goals becasue we could have a MVP and add increasing complexity as time allows. 
+
+Construction:
+Create a level with the neceessary components: enemies, blocks, an exit portal, a spawn point, and possible text. 
+
+Functions:
+.populateEnemies
+Enter the enemies into the game 
+
+.levelPhyiscs
+Creates the phyics necessary for the game such as having window borders and accurate collisions. 
+
+.bulletCollisions
+Create the bullet properties such as hitting enemies
+
+.display
+Display blocks, enemies on the screen.
+
 
 ## main.py
 
-## mcquestion.py
+Overview: 
+Essentially assemble all the helper files into a cohesive game. 
 
+Elements: 
+Has a levels array that stores all level objects that are included in the game. The game proceeds linearly through them. 
+
+Game loop
+Contains a loop that runs until the game ends. Proceeds forward if the player wins, backwards if the player loses. 
+
+Drawing elemtnt
+Draw various entities in the game such as the duck, the screen background and color
+
+Bullet Behavior
+Allow the user to shoot 1 bullet every 15 ticks. Remove bullets that hit enemies or exit the screen. 
+
+## mcquestion.py
+Overview:
+Not a level object, but contains the same functions as a level. Therefore, it behaves like a level but with key differences. Such differences include having 4 portals, a set block setup, set spawn point, and no enemies. 
+
+Construction: 
+Similar to that of Level objects but takes parameters that allow for specific questions to be asked with a given correct answer. 
+
+Functions:
+.display
+Displays the given question, which acts like its own level. 
+
+.levelPhysics
+Dictates basic physics such as borders and if the player is contact with the right/wrong answer. 
+
+.bulletCollisions
+Does nothing, but is included so that mcquestion objects can have the same functions as levels. This adds a level of security; the developer can treat mcquestion objects just as levels--preventing errors.
  
+.populateEnemies
+Does nothing, but is included so that mcquestion objects can have the same functions as levels. This adds a level of security; the developer can treat mcquestion objects just as levels--preventing errors.
+
 
 
 
