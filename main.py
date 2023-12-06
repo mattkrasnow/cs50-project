@@ -28,7 +28,7 @@ pygame.display.set_caption('CS50 Duck to the Rescue')
 duck = Duck(400, 600, WIDTH, HEIGHT)
 clock = pygame.time.Clock()
 levels = [
-    Level([[400, 300], [200, 300]], [Block(0, 500, 200, 30), Block(400, 300, 100, 20), Block(200, 400, 100, 20)], 700, 500, WIDTH, HEIGHT), 
+    Level([[400, 300], [200, 300]], [Block(0, 500, 200, 30), Block(400, 300, 100, 20), Block(200, 400, 100, 20)], 700, 500, WIDTH, HEIGHT, 100, 400, disptext="Hello and welcome!"), 
     McQuestion('Which is the correct header for a loop in c?', ['for(i = 0, i < 5; i++)', 'for(int i = 0; i < 5; i++)', 'do while():', 'for i in range(5)'], 1, WIDTH, HEIGHT),
     McQuestion('Which is NOT a property of arrays in c?', ['Stores a list of items', 'Stores a single type', 'Has dynamic size', 'Can be multidimensional'], 2, WIDTH, HEIGHT),
     McQuestion('Of the following, which is the slowest sorting algorithm?', ['QuickSort', 'MergeSort', 'BubbleSort', 'InsertionSort'], 2, WIDTH, HEIGHT),
@@ -71,7 +71,8 @@ while run:
     
     duck.jumping = True
     firstRight = levels[currentLevel].levelPhysics(duck)
-
+    if firstRight:
+        bulletDamage += 1
     
     levels[currentLevel].display(screen)
 

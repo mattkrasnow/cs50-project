@@ -5,7 +5,7 @@ from answer import Answer
 
 
 class Level(object):
-    def __init__(self, enemyPos, blocks, exitX, exitY, screenwidth, screenheight, disptext=""):
+    def __init__(self, enemyPos, blocks, exitX, exitY, screenwidth, screenheight, spawnX, spawnY, disptext=""):
         self.enemyPos = enemyPos
         self.enemies = []
         self.blocks = blocks
@@ -14,8 +14,8 @@ class Level(object):
         self.screenheight = screenheight
         self.levelComplete = False
         self.levelFailed = False
-        self.spawnX = 100
-        self.spawnY = 400
+        self.spawnX = spawnX
+        self.spawnY = spawnY
         self.enemyHit = False
         self.hitDirection = 'r'
         self.text = disptext
@@ -63,6 +63,11 @@ class Level(object):
                         self.enemies.pop(self.enemies.index(enemy))
         
     def display(self, screen):
+        font = pygame.font.Font('SourceCodePro-SemiBold.ttf', 12)
+        text = font.render(self.text, True,  (0,255,0), (100,100,100))
+        aRect = text.get_rect()
+        aRect.center = (self.screenwidth/2, 100)
+        screen.blit(text, aRect)
         for block in self.blocks:
             block.display(screen)
         for enemy in self.enemies:
