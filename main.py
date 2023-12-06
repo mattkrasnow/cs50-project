@@ -114,11 +114,14 @@ while run:
             duck.vel = -5
         if hp == 0:
             currentLevel = 0
+            levels[currentLevel].levelComplete = False
             hp = 10
             duck.hp = hp
             levels[currentLevel].populateEnemies()
             duck.vel = 0
             duck.yvel = 0
+            duck.x = levels[currentLevel].spawnX
+            duck.y = levels[currentLevel].spawnY
         
     for bullet in bullets:
         bullet.display(screen)

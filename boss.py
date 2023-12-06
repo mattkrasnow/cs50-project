@@ -3,6 +3,7 @@ import random
 import math
 from hpbar import HPBar
 from enemy import Enemy
+from enemybullet import EnemyBullet
 
 class Boss(object):
     def __init__(self, screenwidth, screenheight):
@@ -28,7 +29,10 @@ class Boss(object):
         self.bossEnemy = Enemy(self.bossX, self.bossY, screenwidth, screenheight)
         self.bossEnemy.w = self.bossw
         self.bossEnemy.h = self.bossh
-
+        self.enemyHit = False
+        self.hitDirection = 'r'
+        self.enemyBullets = []
+        self.bulletTime = 60
 
         self.populateEnemies()
 
@@ -54,6 +58,39 @@ class Boss(object):
         if self.bossY + self.bossh > self.screenheight:
             self.bossY = self.screenheight - self.bossh
             self.bossYVel = self.bossYVel * -1
+        if self.bossCollision(duck):
+            self.enemyHit = True
+            if self.bossX + self.bossw/2 > duck.x + duck.w/2:
+                self.hitDirection = 'l'
+            else:
+                self.hitDirection = 'r'
+        for bullet in self.enemyBullets:
+            bullet.move()
+            if bullet.enemyCollision(duck):
+                self.enemyHit = True
+                if bullet.x + bullet.w/2 > duck.x + duck.w/2:
+                    self.hitDirection = 'l'
+                else:
+                    self.hitDirection = 'r'
+                self.enemyBullets.pop(self.enemyBullets.index(bullet))
+        self.bulletTime -= 1
+        if self.bulletTime == 0:
+            self.bulletTime = 120
+            bulletX = self.bossX + self.bossw/2
+            bulletY = self.bossY + self.bossh/2
+            xDiff = duck.x + duck.w/2 - bulletX
+            yDiff = duck.y + duck.h/2 - bulletY
+            normFactor = math.sqrt(xDiff*xDiff + yDiff*yDiff)
+            xDiff = 8 * xDiff/normFactor
+            yDiff = 8 * yDiff/normFactor
+            self.enemyBullets.append(EnemyBullet(bulletX, bulletY, xDiff, yDiff))
+
+
+        return False
+    
+    def bossCollision(self, duck):
+        if duck.w + duck.x > self.bossX and duck.x < self.bossX + self.bossw and duck.y + duck.h > self.bossY and duck.y < self.bossY + self.bossh:
+            return True
         return False
 
 
@@ -66,11 +103,13 @@ class Boss(object):
                 bullets.pop(bullets.index(bullet))
                 if self.bossHP == 0:
                     self.levelComplete = True
-        pass
+        
 
     def display(self, screen):
         for block in self.blocks:
             block.display(screen)
+        for bullet in self.enemyBullets:
+            bullet.display(screen)
         screen.blit(self.img, (self.bossX, self.bossY))
         self.hpBar.hp = self.bossHP
         self.hpBar.display(screen, self.bossX + self.bossw/2, self.bossY - 30)
