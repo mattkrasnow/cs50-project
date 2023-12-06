@@ -64,7 +64,7 @@ class Level(object):
         
     def display(self, screen):
         font = pygame.font.Font('SourceCodePro-SemiBold.ttf', 12)
-        text = font.render(self.text, True,  (0,255,0), (100,100,100))
+        text = font.render(self.text, True,  (0,255,0), (50,50,50))
         aRect = text.get_rect()
         aRect.center = (self.screenwidth/2, 100)
         screen.blit(text, aRect)

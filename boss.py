@@ -101,7 +101,7 @@ class Boss(object):
             if bullet.enemyCollision(self.bossEnemy):
                 self.bossHP -= damage
                 bullets.pop(bullets.index(bullet))
-                if self.bossHP == 0:
+                if self.bossHP <= 0:
                     self.levelComplete = True
         
 

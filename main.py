@@ -8,11 +8,12 @@ from level import Level
 from mcquestion import McQuestion
 from boss import Boss
 import math
+from textscreen import TextScreen
 
 pygame.init()
 
 
-BACKGROUND = (100,100,100)
+BACKGROUND = (50,50,50)
 btime = 15
 hitCooldown = 60
 hp = 10
@@ -29,6 +30,7 @@ pygame.display.set_caption('CS50 Duck to the Rescue')
 duck = Duck(400, 600, WIDTH, HEIGHT)
 clock = pygame.time.Clock()
 levels = [
+    TextScreen(['The Year is 2024...', "it is set to be CS50's biggest yet", 'But there is one problem', 'The evil coders at MIT have hacked the code!', 'In all the chaos, only one man can save CS50', 'Or, as it would be, one duck.'], WIDTH, HEIGHT),
     Level([[400, 300], [200, 300]], [Block(0, 500, 200, 30), Block(400, 300, 100, 20), Block(200, 400, 100, 20)], 700, 500, WIDTH, HEIGHT, 100, 400, disptext="Hello and welcome!"), 
     McQuestion('Which is the correct header for a loop in c?', ['for(i = 0, i < 5; i++)', 'for(int i = 0; i < 5; i++)', 'do while():', 'for i in range(5)'], 1, WIDTH, HEIGHT),
     McQuestion('Which is NOT a property of arrays in c?', ['Stores a list of items', 'Stores a single type', 'Has dynamic size', 'Can be multidimensional'], 2, WIDTH, HEIGHT),
@@ -38,7 +40,8 @@ levels = [
     McQuestion('What terminal command opens the database fiftyville.db?', ['sqlite3 fiftyville.db', 'SELECT * FROM users', 'import sqlite3 from Python', 'SELECT * FROM fiftyville.db'], 0, WIDTH, HEIGHT),
     McQuestion('How can static websites change?', ['The developer changes the code', 'The user interacts with the display', 'They cannot be changed', 'They can be changed by many factors'], 0, WIDTH, HEIGHT),
     McQuestion('What is NOT a language used when using Flask?', ['JavaScript', 'HTML', 'CSS', 'C'], 3, WIDTH, HEIGHT),
-    Boss(WIDTH, HEIGHT)
+    Boss(WIDTH, HEIGHT),
+    TextScreen(["Congratulations, you have saved CS50!", "With the beavers defeated,", "The duck recovers the rest of the code", "He rushes home and puts it in place,", "starting codespaces minutes before Lecture 0.", "CS50 is saved!"], WIDTH, HEIGHT)
 ]
 run = True
 bullets = []
@@ -86,8 +89,8 @@ while run:
         btime += 1
     if pygame.key.get_pressed()[pygame.K_SPACE] and btime == 30:
         btime = 0
-        bulletX = duck.x+duck.w/2 - 20
-        bulletY = duck.y+duck.h/2
+        bulletX = duck.guntipX
+        bulletY = duck.guntipY
         mX, mY = pygame.mouse.get_pos()
         xDiff = mX - bulletX
         yDiff = mY - bulletY

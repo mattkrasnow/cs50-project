@@ -24,7 +24,7 @@ class Answer():
     # display answer objects
     def display(self, screen):
         font = pygame.font.Font('SourceCodePro-SemiBold.ttf', 10)
-        text = font.render(self.answerText, True,  (0,255,0), (100,100,100))
+        text = font.render(self.answerText, True,  (0,255,0), (50,50,50))
         aRect = text.get_rect()
         aRect.center = (self.x + self.w/2, self.y - 25)
         screen.blit(text, aRect)
