@@ -6,6 +6,8 @@ from enemy import Enemy
 from bullet import Bullet
 from level import Level
 from mcquestion import McQuestion
+from boss import Boss
+import math
 
 pygame.init()
 
@@ -36,7 +38,8 @@ levels = [
     McQuestion('In which case would a linked list be better than an array?', ['List of constant length', 'Limited available memory', 'List of unknown length', 'Never'], 2, WIDTH, HEIGHT),
     McQuestion('What terminal command opens the database fiftyville.db?', ['sqlite3 fiftyville.db', 'SELECT * FROM users', 'import sqlite3 from Python', 'SELECT * FROM fiftyville.db'], 0, WIDTH, HEIGHT),
     McQuestion('How can static websites change?', ['The developer changes the code', 'The user interacts with the display', 'They cannot be changed', 'They can be changed by many factors'], 0, WIDTH, HEIGHT),
-    McQuestion('What is NOT a language used when using Flask?', ['JavaScript', 'HTML', 'CSS', 'C'], 3, WIDTH, HEIGHT)
+    McQuestion('What is NOT a language used when using Flask?', ['JavaScript', 'HTML', 'CSS', 'C'], 3, WIDTH, HEIGHT),
+    Boss()
 ]
 run = True
 bullets = []
@@ -84,7 +87,16 @@ while run:
         btime += 1
     if pygame.key.get_pressed()[pygame.K_SPACE] and btime == 30:
         btime = 0
-        bullets.append(Bullet(duck.x+duck.w/2 - 20, duck.y+duck.h/2, duck.dir))
+        bulletX = duck.x+duck.w/2 - 20
+        bulletY = duck.y+duck.h/2
+        mX, mY = pygame.mouse.get_pos()
+        xDiff = mX - bulletX
+        yDiff = mY - bulletY
+        normFactor = math.sqrt(xDiff * xDiff + yDiff * yDiff)
+        xDiff = 8 * xDiff / normFactor
+        yDiff = 8 * yDiff / normFactor
+        bullets.append(Bullet(bulletX, bulletY, xDiff, yDiff))
+
     if hitCooldown < 60:
         hitCooldown += 1
     if levels[currentLevel].enemyHit and hitCooldown == 60:
@@ -112,7 +124,7 @@ while run:
     for bullet in bullets:
         bullet.display(screen)
         bullet.move()
-        if bullet.x < -100 or bullet.x > WIDTH + 100:
+        if bullet.x < -100 or bullet.x > WIDTH + 100 or bullet.y < -100 or bullet.y > HEIGHT + 100:
             bullets.pop(bullets.index(bullet))
     duck.display(screen)
 

@@ -51,7 +51,7 @@ class Level(object):
             for bullet in bullets:
                 if bullet.enemyCollision(enemy):
                     enemy.hp -= damage
-                    if bullet.d == 'l':
+                    if bullet.xvel <= 0:
                         enemy.vel = -2
                     else:
                         enemy.vel = 2
@@ -59,7 +59,7 @@ class Level(object):
                     enemy.jumping = True
                     enemy.y -= 8
                     bullets.pop(bullets.index(bullet))
-                    if enemy.hp == 0:
+                    if enemy.hp <= 0:
                         self.enemies.pop(self.enemies.index(enemy))
         
     def display(self, screen):
