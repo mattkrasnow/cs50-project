@@ -2,6 +2,7 @@ import pygame
 import random
 import math
 from hpbar import HPBar
+from enemy import Enemy
 
 class Boss(object):
     def __init__(self, screenwidth, screenheight):
@@ -24,6 +25,9 @@ class Boss(object):
         self.spawnX = 100
         self.spawnY = screenheight - 100
         self.blocks = []
+        self.bossEnemy = Enemy(self.bossX, self.bossY, screenwidth, screenheight)
+        self.bossEnemy.w = self.bossw
+        self.bossEnemy.h = self.bossh
 
 
         self.populateEnemies()
@@ -54,6 +58,14 @@ class Boss(object):
 
 
     def bulletCollisions(self, bullets, damage):
+        self.bossEnemy.x = self.bossX
+        self.bossEnemy.y = self.bossY
+        for bullet in bullets:
+            if bullet.enemyCollision(self.bossEnemy):
+                self.bossHP -= damage
+                bullets.pop(bullets.index(bullet))
+                if self.bossHP == 0:
+                    self.levelComplete = True
         pass
 
     def display(self, screen):
