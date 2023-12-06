@@ -23,7 +23,6 @@ bulletDamage = 1
 # define aspects of the window
 screen = pygame.display.set_mode((960, 600), pygame.FULLSCREEN)
 WIDTH, HEIGHT = screen.get_size()
-print(str(WIDTH) + ', ' + str(HEIGHT))
 pygame.display.set_caption('CS50 Duck to the Rescue')
 
 # intialize duck
@@ -39,7 +38,7 @@ levels = [
     McQuestion('What terminal command opens the database fiftyville.db?', ['sqlite3 fiftyville.db', 'SELECT * FROM users', 'import sqlite3 from Python', 'SELECT * FROM fiftyville.db'], 0, WIDTH, HEIGHT),
     McQuestion('How can static websites change?', ['The developer changes the code', 'The user interacts with the display', 'They cannot be changed', 'They can be changed by many factors'], 0, WIDTH, HEIGHT),
     McQuestion('What is NOT a language used when using Flask?', ['JavaScript', 'HTML', 'CSS', 'C'], 3, WIDTH, HEIGHT),
-    Boss()
+    Boss(WIDTH, HEIGHT)
 ]
 run = True
 bullets = []
