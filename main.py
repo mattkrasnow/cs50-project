@@ -14,6 +14,7 @@ BACKGROUND = (100,100,100)
 btime = 15
 hitCooldown = 60
 hp = 10
+bulletDamage = 1
 
 
 
@@ -69,17 +70,18 @@ while run:
     screen.fill(BACKGROUND)
     
     duck.jumping = True
-    levels[currentLevel].levelPhysics(duck)
+    firstRight = levels[currentLevel].levelPhysics(duck)
+
     
     levels[currentLevel].display(screen)
 
-    levels[currentLevel].bulletCollisions(bullets)
+    levels[currentLevel].bulletCollisions(bullets, bulletDamage)
 
 
     #draw a bullet at the location of the duck
-    if btime < 15:
+    if btime < 30:
         btime += 1
-    if pygame.key.get_pressed()[pygame.K_SPACE] and btime == 15:
+    if pygame.key.get_pressed()[pygame.K_SPACE] and btime == 30:
         btime = 0
         bullets.append(Bullet(duck.x+duck.w/2 - 20, duck.y+duck.h/2, duck.dir))
     if hitCooldown < 60:
@@ -88,6 +90,16 @@ while run:
         hitCooldown = 0
         hp -= 1
         duck.hp = hp
+        if levels[currentLevel].hitDirection == 'r':
+            duck.jumping = True
+            duck.y -= 8
+            duck.yvel += 5
+            duck.vel = 5
+        else:
+            duck.jumping = True
+            duck.y -= 8
+            duck.yvel += 5
+            duck.vel = -5
         if hp == 0:
             currentLevel = 0
             hp = 10

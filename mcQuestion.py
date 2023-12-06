@@ -8,7 +8,7 @@ class McQuestion():
     def __init__ (self, question, answers, correctIndex, screenWidth, screenHeight):
         blocks = [Block(0, screenHeight-350, 200, 20), Block(screenWidth - 200, screenHeight-350, 200, 20), Block(screenWidth/2 - 100, screenHeight-200, 200, 20), Block(screenWidth/2-200, screenHeight-50, 100, 20), Block(screenWidth/2+100, screenHeight-50, 100, 20)]
         self.level = Level([], blocks, 100000, 100000, screenWidth, screenHeight)
-        positions = [[100, 100], [100, screenHeight-100], [screenWidth-100, 100], [screenWidth-100, screenHeight-100]]
+        positions = [[100, 150], [100, screenHeight-100], [screenWidth-100, 150], [screenWidth-100, screenHeight-100]]
         self.answers = []
         for i in range(4):
             ind = random.randint(0, 3-i)
@@ -22,6 +22,7 @@ class McQuestion():
         self.enemyHit = False
         self.screenwidth = screenWidth
         self.screenheight = screenHeight
+        self.questionAnswered = False
 
 
     def display(self, screen):
@@ -42,10 +43,15 @@ class McQuestion():
             if a.duckCollision(duck):
                 if a.correctness:
                     self.levelComplete = True
+                    if self.questionAnswered = False:
+                        self.questionAnswered = True
+                        return True
                 else:
                     self.levelFailed = True
+                    self.questionAnswered = True
+        return False
     
-    def bulletCollisions(self, bullets):
+    def bulletCollisions(self, bullets, damage):
         pass
 
     def populateEnemies(self):

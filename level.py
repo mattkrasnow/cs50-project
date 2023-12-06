@@ -5,7 +5,7 @@ from answer import Answer
 
 
 class Level(object):
-    def __init__(self, enemyPos, blocks, exitX, exitY, screenwidth, screenheight):
+    def __init__(self, enemyPos, blocks, exitX, exitY, screenwidth, screenheight, disptext=""):
         self.enemyPos = enemyPos
         self.enemies = []
         self.blocks = blocks
@@ -17,6 +17,8 @@ class Level(object):
         self.spawnX = 100
         self.spawnY = 400
         self.enemyHit = False
+        self.hitDirection = 'r'
+        self.text = disptext
         self.populateEnemies()
     
     def populateEnemies(self):
@@ -38,15 +40,24 @@ class Level(object):
                 block.objectCollision(enemy)
             if enemy.duckCollision(duck):
                 self.enemyHit = True
+                self.hitDirection = enemy.dir
         
         if(self.exit.duckCollision(duck)):
             self.levelComplete = True
+        return False
         
-    def bulletCollisions(self, bullets):
+    def bulletCollisions(self, bullets, damage):
         for enemy in self.enemies:
             for bullet in bullets:
                 if bullet.enemyCollision(enemy):
-                    enemy.hp -= 1
+                    enemy.hp -= damage
+                    if bullet.d == 'l':
+                        enemy.vel = -2
+                    else:
+                        enemy.vel = 2
+                    enemy.yvel += 4
+                    enemy.jumping = True
+                    enemy.y -= 8
                     bullets.pop(bullets.index(bullet))
                     if enemy.hp == 0:
                         self.enemies.pop(self.enemies.index(enemy))
