@@ -6,6 +6,7 @@ from enemy import Enemy
 from enemybullet import EnemyBullet
 
 class Boss(object):
+    # Constructor for Boss objects that takes parameters of the window dimensions (for proper physics)
     def __init__(self, screenwidth, screenheight):
         bossImg = pygame.image.load("bigbeaver.png").convert_alpha()
         self.img = pygame.transform.scale_by(bossImg, 0.9)
@@ -36,10 +37,12 @@ class Boss(object):
 
         self.populateEnemies()
 
+    # Resets the health of boss if the user plays it multiple times 
     def populateEnemies(self):
         self.bossHP = 100
         self.bossMaxHP = 100
     
+    # Bounces the boss around the screen and detects collisions with the duck
     def levelPhysics(self, duck):
         for block in self.blocks:
             block.objectCollision(duck)
@@ -88,12 +91,13 @@ class Boss(object):
 
         return False
     
+    # returns true if the boss is touching the duck
     def bossCollision(self, duck):
         if duck.w + duck.x > self.bossX and duck.x < self.bossX + self.bossw and duck.y + duck.h > self.bossY and duck.y < self.bossY + self.bossh:
             return True
         return False
 
-
+    # Boss takes damage when the player's bullet is touching the boss
     def bulletCollisions(self, bullets, damage):
         self.bossEnemy.x = self.bossX
         self.bossEnemy.y = self.bossY
@@ -104,7 +108,7 @@ class Boss(object):
                 if self.bossHP <= 0:
                     self.levelComplete = True
         
-
+    # displays the boss on the screen as the MIT logo with a HP bar
     def display(self, screen):
         for block in self.blocks:
             block.display(screen)

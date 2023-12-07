@@ -1,15 +1,18 @@
 import pygame
 
 class Block(object):
+    # Constructor for block objects that takes x and y positions and w and h dimensions (width,height)
     def __init__(self, x, y, w, h):
         self.x = x
         self.y = y
         self.w = w
         self.h = h
 
+    # displays the block object on the screen by  drawing a black rectangle
     def display(self, win):
         pygame.draw.rect(win, (0, 0, 0), (self.x, self.y, self.w, self.h))
 
+    # detects when the block is colliding with the duck or an enemy
     def objectCollision(self, object):
         if object.x + object.w <= self.x or object.x >= self.x + self.w:
             if object.jumping == False:
