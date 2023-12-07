@@ -66,6 +66,10 @@ currentLevel = 0 # keep track of which index of the levels in the array the play
 while run:
     if levels[currentLevel].levelComplete: # check for level completion conditions (touching the portal, or the scrolling text finishing)
         currentLevel += 1 # increment the next level, reset all of its variables to the default values in case the player has tried the level before, and put the duck in the correct spawn position. Finally, the level's enemies are repopulated
+        if currentLevel == len(levels):
+            run = False
+            pygame.quit()
+            sys.exit()
         levels[currentLevel].levelComplete = False
         levels[currentLevel].levelFailed = False
         duck.x = levels[currentLevel].spawnX
