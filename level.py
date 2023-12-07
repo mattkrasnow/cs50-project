@@ -5,7 +5,7 @@ from answer import Answer
 
 
 class Level(object):
-    # Constructor for level objects that takes paremters
+    # Constructor for level objects that takes parameters of the enemy starting positions, array of blocks in the level, position of exit portal, windo dimensions, the duck's spawn position, and any text displayed on screen
     def __init__(self, enemyPos, blocks, exitX, exitY, screenwidth, screenheight, spawnX, spawnY, disptext=""):
         self.enemyPos = enemyPos
         self.enemies = []
@@ -22,11 +22,13 @@ class Level(object):
         self.text = disptext
         self.populateEnemies()
     
+    # Spawns in the enemies for the level at designated positions
     def populateEnemies(self):
         self.enemies = []
         for pos in self.enemyPos:
             self.enemies.append(Enemy(pos[0], pos[1], self.screenwidth, self.screenheight))
     
+    # Makes enemies move, block collisions with player/enemies, exit portal with the duck
     def levelPhysics(self, duck):
         for block in self.blocks:
             block.objectCollision(duck)
@@ -63,6 +65,7 @@ class Level(object):
                     if enemy.hp <= 0:
                         self.enemies.pop(self.enemies.index(enemy))
         
+    # displays the  blocks and enemies on screen, text, and exit portal
     def display(self, screen):
         font = pygame.font.Font('SourceCodePro-SemiBold.ttf', 12)
         text = font.render(self.text, True,  (0,255,0), (50,50,50))
