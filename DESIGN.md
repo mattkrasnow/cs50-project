@@ -14,6 +14,7 @@ This is our CS50 project!
     - [level.py](#levelpy)
     - [main.py](#mainpy)
     - [mcquestion.py](#mcquestionpy)
+    - [textscreen.py](#text-screenpy)
 
 
 
@@ -199,7 +200,25 @@ Does nothing, but is included so that mcquestion objects can have the same funct
 .populateEnemies
 Does nothing, but is included so that mcquestion objects can have the same functions as levels. This adds a level of security; the developer can treat mcquestion objects just as levels--preventing errors.
 
+## Text-Screen.py
 
+Overview: 
+Creates a screen where text is dispalyed "Star Wars Style". Conveys story elements to the user.
+
+Constructor:
+Creates a blank level with text on the screen 
+
+.populateEnemies
+Prevents errors from calling a "level" without enemies
+
+.levelPhysics
+Makes the text move up the screen
+
+.bulletCollisions
+Prevents errors from calling a "level" without bullets
+
+.display
+Displays text on the screen that moves star wars style
 
 
 
