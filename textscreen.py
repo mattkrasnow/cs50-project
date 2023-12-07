@@ -1,6 +1,7 @@
 import pygame
 
 class TextScreen(object):
+    # Constructor that takes strings to be displayed and the window dimensions
     def __init__(self, textBlocks, screenwidth, screenheight):
         self.textItems = textBlocks
         self.frame = 0
@@ -12,16 +13,20 @@ class TextScreen(object):
         self.spawnX = screenwidth/2
         self.spawnY = screenheight/2
     
+    # Prevents calling a method that doesn't exist
     def populateEnemies(self):
         pass
 
+    # Increases the time, makes the text move
     def levelPhysics(self, duck):
         self.frame += 1
         return False
     
+    # Prevents calling a method that doesn't exist
     def bulletCollisions(self, bullet, damage):
         pass
 
+    # Displays the text on screen, Star Wars Style
     def display(self, screen):
         yPos = self.screenheight - self.frame
         for i in range(len(self.textItems)):
