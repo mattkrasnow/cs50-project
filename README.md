@@ -20,12 +20,12 @@ It will start by opening a new pygame window with the game visuals therein.
 The keyboard controls for gameplay are as follows:
 
 Trackpad: Aims the player's bullets
-\[SPACE\]: Player shoots a bullet in the direction of the mouse
+Single-click: Player shoots a bullet in the direction of the mouse
 
 ArrowKeys:
-Right: Move the player to the right
-Left: Move the plater to the left
-Up: Move the player up (jump)
+\[D\]: Move the player to the right
+\[A\]: Move the plater to the left
+\[W\]: Move the player up (jump)
 
 
 ## Playing
