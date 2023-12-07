@@ -5,6 +5,7 @@ from answer import Answer
 
 
 class Level(object):
+    # Constructor for level objects that takes paremters
     def __init__(self, enemyPos, blocks, exitX, exitY, screenwidth, screenheight, spawnX, spawnY, disptext=""):
         self.enemyPos = enemyPos
         self.enemies = []

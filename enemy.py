@@ -2,6 +2,7 @@ import pygame
 from hpbar import HPBar
 
 class Enemy(object):
+    # Constructor for enemy objects that takes in the enemy position and screen dimensions (for physics) 
     def __init__(self, x, y, screenwidth, screenheight):
         self.x = x
         self.y = y
@@ -24,6 +25,7 @@ class Enemy(object):
         self.screenwidth = screenwidth
         self.screenheight = screenheight
 
+    # displays the MIT badger on screen, facing the duck
     def display(self, win):
         if self.dir == 'r':
             win.blit(self.imgR, (self.x, self.y))
@@ -32,6 +34,7 @@ class Enemy(object):
         self.hpBar.hp = self.hp
         self.hpBar.display(win, self.x + self.w/2, self.y - 30)
     
+    # move the enemy in the direction of the duck
     def move(self, duck):
         if self.y >= self.screenheight - self.h:
             self.y = self.screenheight - self.h
@@ -61,7 +64,7 @@ class Enemy(object):
         if self.x >= self.screenwidth - self.w:
             self.x = self.screenwidth - self.w
             self.vel = 0
-        
+    # determine if the enemy is touching the duck    
     def duckCollision(self, duck):
         if duck.w + duck.x > self.x and duck.x < self.x + self.w and duck.y + duck.h > self.y and duck.y < self.y + self.h:
             return True

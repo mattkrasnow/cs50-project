@@ -3,6 +3,7 @@ from hpbar import HPBar
 import math
 
 class Duck(object):
+    # constructor for the player that takes the screen dimensions (for physics)
     def __init__(self, x, y, screenwidth, screenheight):
         self.x = x
         self.y = y
@@ -27,6 +28,7 @@ class Duck(object):
         self.screenwidth = screenwidth
         self.screenheight = screenheight
 
+    # displays the duck on screen as an image with "a", facing the direction of movement
     def display(self, win):
         gunX = self.x + self.w/2
         gunY = self.y + 3*self.h/4
@@ -51,6 +53,7 @@ class Duck(object):
         self.guntipY = gunY + yDiff
 
     
+    # move the duck with respect tot eh key that has been pressed
     def move(self):
         if self.y >= self.screenheight - self.h:
             self.y = self.screenheight - self.h
