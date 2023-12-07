@@ -3,7 +3,6 @@ This is our CS50 project!
 
 ## Table of Contents
 
-- [Our Video!](https://youtu.be/W3D0rbpKQ80)
 - [Premise](#premise)
 - [Project Manual](#project-manual)
     - [block.py](#blockpy)
