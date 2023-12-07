@@ -1,5 +1,4 @@
 import pygame
-from block import Block
 from enemy import Enemy
 from answer import Answer
 

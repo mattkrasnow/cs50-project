@@ -2,7 +2,6 @@ import pygame
 import sys
 from duck import Duck
 from block import Block
-from enemy import Enemy
 from bullet import Bullet
 from level import Level
 from mcquestion import McQuestion

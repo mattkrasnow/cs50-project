@@ -1,4 +1,3 @@
-import pygame
 import random
 from answer import Answer
 from level import Level
