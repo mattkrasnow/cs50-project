@@ -32,9 +32,11 @@ duck = Duck(0, HEIGHT-150, WIDTH, HEIGHT)
 clock = pygame.time.Clock()
 # create the array of levels and level-like objects that is iterated through to run the game 
 levels = [
-    TextScreen(['The Year is 2024...', "it is set to be CS50's biggest yet", 'But there is one problem', 'The evil coders at MIT have hacked the code!', 'In all the chaos, only one man can save CS50', 'Or, as it would be, one duck.'], WIDTH, HEIGHT), # TextScreen objects take in a list of strings to make a Star-Wars-like scrolling text screen
-    TextScreen(['After hacking into the MIT mainframe,', 'the duck discovers something sinister...', 'It is a maze filled with evil beavers!', 'He must reach the portals on each level', 'Defeat the beavers,', 'and answer questions to save the psets!'], WIDTH, HEIGHT),
-    Level([], [Block(500, HEIGHT - 100, 20, 100)], 900, 500, WIDTH, HEIGHT, 100, 400, disptext="Use the A and D keys to move around the level, and the W key to jump!"), # each level takes an array of enemy position, block positions, a player spawn point, and the location of an exit portal, as well as text to display
+    Level([], [Block(500, HEIGHT - 100, 50, 100)], 900, 500, WIDTH, HEIGHT, 100, 400, disptext="Use the A and D keys to move around the level, and the W key to jump!"), # each level takes an array of enemy position, block positions, a player spawn point, and the location of an exit portal, as well as text to display
+    TextScreen(['The Year is 2024...', "it is set to be CS50's biggest yet", 'But there is one problem', 'The evil coders at MIT have hacked the code!', 'In all the chaos, only one man can save CS50', 'Or, as it would be, one duck.',
+                '', '', '',
+                'After hacking into the MIT mainframe,', 'the duck discovers something sinister...', 'It is a maze filled with evil beavers!', 'He must reach the portals on each level', 'Defeat the beavers,', 'and answer questions to save the psets!'], WIDTH, HEIGHT), # TextScreen objects take in a list of strings to make a Star-Wars-like scrolling text screen 
+    Level([], [Block(500, HEIGHT - 100, 50, 100)], 900, 500, WIDTH, HEIGHT, 100, 400, disptext="Use the A and D keys to move around the level, and the W key to jump!"), # each level takes an array of enemy position, block positions, a player spawn point, and the location of an exit portal, as well as text to display
     Level([[750, HEIGHT - 400]], [Block(500, HEIGHT - 100, 300, 20), Block(800, HEIGHT - 200, 100, 20)], 850, HEIGHT - 400, WIDTH, HEIGHT, 100, 400, disptext="Click to shoot at evil beavers, and don't get hit!"),
     Level([], [], 850, HEIGHT - 100, WIDTH, HEIGHT, 100, 400, disptext="To recover each pset, you must answer a question correctly. Getting it right on the first try increases your damage!"),
     McQuestion('In Scratch, what is the purpose of a loop?', ['Drawing a circle', 'Repeating code', 'Moving in a circle', 'There are no loops'], 1, WIDTH, HEIGHT), # question levels take in a question, a list of answers, and the index of the correct answer
@@ -48,7 +50,7 @@ levels = [
     McQuestion('Which piece of code should always follow a malloc() call?', ['calloc()', 'free()', 'A pointer', 'The stack'], 1, WIDTH, HEIGHT),
     Level([[450 + 50 * i, HEIGHT - 150] for i in range(8)], [], 900, HEIGHT - 200, WIDTH, HEIGHT, 0, HEIGHT - 150, disptext="Hope you have enough damage!"),
     McQuestion('In which case would a linked list be better than an array?',  ['List of constant length', 'Limited available memory', 'List of unknown length', 'Never'], 2, WIDTH, HEIGHT),
-    Level([], [Block(150 + 100 * i, HEIGHT - 50 * i, 80, 20) for i in range(8)], 900, 100, WIDTH, HEIGHT, 0, HEIGHT - 150, disptext="Here's a little break."),
+    Level([], [Block(150 + 100 * i, HEIGHT - 50 * i, 80, 20) for i in range(1, 8)], 900, 100, WIDTH, HEIGHT, 0, HEIGHT - 150, disptext="Here's a little break."),
     McQuestion('What terminal command opens the database fiftyville.db?', ['sqlite3 fiftyville.db', 'SELECT * FROM users', 'import sqlite3 from Python', 'SELECT * FROM fiftyville.db'], 0, WIDTH, HEIGHT),
     Level([[WIDTH/2, HEIGHT - 100], [WIDTH/2, HEIGHT - 250], [WIDTH/2, HEIGHT - 400], [WIDTH/2, HEIGHT - 550]], [Block(0, HEIGHT - 150, WIDTH - 100, 20), Block(100, HEIGHT - 300, WIDTH - 100, 20), Block(0, HEIGHT - 450, WIDTH - 100, 20)], 80, 60, WIDTH, HEIGHT, 0, HEIGHT - 150, disptext="The duck is climbing higher, sensing something coming soon!"),
     McQuestion('How can static websites change?', ['The developer changes the code', 'The user interacts with the display', 'They cannot be changed', 'They can be changed by many factors'], 0, WIDTH, HEIGHT),
@@ -60,8 +62,9 @@ levels = [
 ]
 
 bullets = []
+run = True
 currentLevel = 0 # keep track of which index of the levels in the array the player is currently on
-while True:
+while run:
     if levels[currentLevel].levelComplete: # check for level completion conditions (touching the portal, or the scrolling text finishing)
         currentLevel += 1 # increment the next level, reset all of its variables to the default values in case the player has tried the level before, and put the duck in the correct spawn position. Finally, the level's enemies are repopulated
         levels[currentLevel].levelComplete = False
