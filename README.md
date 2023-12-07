@@ -4,6 +4,7 @@
 Table of Contents
 
 - [Our Video!](https://youtu.be/W3D0rbpKQ80)
+- [Project Github](https://github.com/mattkrasnow/cs50-project)
 - [Overiview](#overview)
 - [How to Start](#how-to-start)
 - [Controls](#controls)
