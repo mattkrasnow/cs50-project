@@ -32,7 +32,6 @@ duck = Duck(0, HEIGHT-150, WIDTH, HEIGHT)
 clock = pygame.time.Clock()
 # create the array of levels and level-like objects that is iterated through to run the game 
 levels = [
-    Level([], [Block(500, HEIGHT - 100, 50, 100)], 900, 500, WIDTH, HEIGHT, 100, 400, disptext="Use the A and D keys to move around the level, and the W key to jump!"), # each level takes an array of enemy position, block positions, a player spawn point, and the location of an exit portal, as well as text to display
     TextScreen(['The Year is 2024...', "it is set to be CS50's biggest yet", 'But there is one problem', 'The evil coders at MIT have hacked the code!', 'In all the chaos, only one man can save CS50', 'Or, as it would be, one duck.',
                 '', '', '',
                 'After hacking into the MIT mainframe,', 'the duck discovers something sinister...', 'It is a maze filled with evil beavers!', 'He must reach the portals on each level', 'Defeat the beavers,', 'and answer questions to save the psets!'], WIDTH, HEIGHT), # TextScreen objects take in a list of strings to make a Star-Wars-like scrolling text screen 
