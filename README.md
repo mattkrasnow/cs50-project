@@ -3,6 +3,7 @@
 
 Table of Contents
 
+- [Our Video!](https://youtu.be/W3D0rbpKQ80)
 - [Overiview](#overview)
 - [How to Start](#how-to-start)
 - [Controls](#controls)

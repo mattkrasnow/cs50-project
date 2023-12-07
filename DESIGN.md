@@ -18,6 +18,7 @@ This is our CS50 project!
 
 
 
+
 ## PREMISE:
 Our project is a Pygame video game that features our class's mascot: the infamous CS50 duck! However, it has a problem! Hackers at MIT, jealous of Harvard and Yale's course, destroyed CS50. Now, it's overrun with MIT beavers that are keeping CS50 in shambles. Our hero must adventure through MIT's tricks and puzzles to finally reclaim our favorite introduction to computer science!
 
