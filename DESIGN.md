@@ -3,7 +3,8 @@ This is our CS50 project!
 
 ## Table of Contents
 
-- [Premise](#premise)
+- [Our Video!](https://youtu.be/W3D0rbpKQ80)
+[Premise](#premise)
 - [Project Manual](#project-manual)
     - [block.py](#blockpy)
     - [boss.py](#bosspy)
@@ -15,6 +16,7 @@ This is our CS50 project!
     - [main.py](#mainpy)
     - [mcquestion.py](#mcquestionpy)
     - [textscreen.py](#text-screenpy)
+
 
 
 
