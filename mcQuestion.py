@@ -5,6 +5,7 @@ from level import Level
 from block import Block
 
 class McQuestion():
+    # Constructor for question "levels". Parameters: question asked to player, possible answers, the index of the correct answer, and the window dimensions
     def __init__ (self, question, answers, correctIndex, screenWidth, screenHeight):
         self.spawnX = screenWidth/2
         self.spawnY = 200
@@ -23,13 +24,14 @@ class McQuestion():
         self.screenheight = screenHeight
         self.questionAnswered = False
 
-
+    # display the questions and answers on the screen
     def display(self, screen):
         self.level.display(screen)
 
         for a in self.answers:
             a.display(screen)
     
+    # define if the duck has answered the question correctly and duck's movement
     def levelPhysics(self, duck):
         self.level.levelPhysics(duck)
         for a in self.answers:
@@ -44,9 +46,11 @@ class McQuestion():
                     self.questionAnswered = True
         return False
     
+    # Prevents developer errors if the developer treats mcquestion objects as levels
     def bulletCollisions(self, bullets, damage):
         pass
-
+    
+    # Prevents developer errors if the developer treats mcquestion objects as levels
     def populateEnemies(self):
         pass
 
