@@ -6,7 +6,7 @@ class Enemy(object):
         self.x = x
         self.y = y
         self.vel = 0
-        self.xaccel = 0.05
+        self.xaccel = 0.06
         self.jumping = False
         self.yaccel = 0.3
         self.yvel = 0
@@ -44,9 +44,9 @@ class Enemy(object):
             self.dir = 'l'
             if self.x > 10:
                 self.vel -= self.xaccel
-        if duck.y + duck.h < self.y + self.h - 100 and self.jumping == False:
+        if duck.y + duck.h < self.y + self.h and self.jumping == False:
             self.jumping = True
-            self.yvel = 8
+            self.yvel = 10
         if self.jumping == True:
             self.yvel -= self.yaccel
             self.y -= self.yvel  
