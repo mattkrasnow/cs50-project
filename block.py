@@ -17,6 +17,10 @@ class Block(object):
         if object.jumping == False: # if the player is touching the ground, automatically set their y velocity to zero.
             object.yvel = 0
 
+        if object.x - 10 >= self.x - object.w and object.x + 10 <= self.x + self.w and object.y < self.y + self.h and object.y + object.h >= self.y + self.h - 12: # make sure the player collides witht he bottom of the block and not get moved on top of it when approaching from the bottom
+            object.yvel = 0
+            object.y = self.y + self.h
+
         if object.x  + object.w >= self.x and object.x <= self.x + self.w and object.y + object.h + object.yvel >= self.y and object.y + object.h < self.y + object.yvel + 1: # check if the player is inside a block, or falling inside a block, and if so, reset their y velocity and place them on top of the block
             object.yvel = 0
             object.y = self.y - object.h
