@@ -57,13 +57,13 @@ class Duck(object):
             self.jumping = False
 
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT] and self.x > 10:
+        if keys[pygame.K_a] and self.x > 10:
             self.vel -= self.xaccel
             self.dir = "l"
-        if keys[pygame.K_RIGHT] and self.x < self.screenwidth - self.w:
+        if keys[pygame.K_d] and self.x < self.screenwidth - self.w:
             self.vel += self.xaccel
             self.dir = "r"
-        if keys[pygame.K_UP] and self.jumping == False:
+        if keys[pygame.K_w] and self.jumping == False:
             self.jumping = True
             self.yvel = 10
         if self.jumping == False:

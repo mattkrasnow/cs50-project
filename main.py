@@ -22,7 +22,7 @@ bulletDamage = 1
 
 
 # define aspects of the window
-screen = pygame.display.set_mode((960, 600), pygame.FULLSCREEN)
+screen = pygame.display.set_mode((960, 600))
 WIDTH, HEIGHT = screen.get_size()
 pygame.display.set_caption('CS50 Duck to the Rescue')
 
@@ -36,7 +36,7 @@ levels = [
     McQuestion('Which is NOT a property of arrays in c?', ['Stores a list of items', 'Stores a single type', 'Has dynamic size', 'Can be multidimensional'], 2, WIDTH, HEIGHT),
     McQuestion('Of the following, which is the slowest sorting algorithm?', ['QuickSort', 'MergeSort', 'BubbleSort', 'InsertionSort'], 2, WIDTH, HEIGHT),
     McQuestion('Which piece of code should always follow a malloc() call?', ['calloc()', 'free()', 'A pointer', 'The stack'], 1, WIDTH, HEIGHT),
-    McQuestion('In which case would a linked list be better than an array?', ['List of constant length', 'Limited available memory', 'List of unknown length', 'Never'], 2, WIDTH, HEIGHT),
+    McQuestion('In which case would a linked list be better than an array?',  ['List of constant length', 'Limited available memory', 'List of unknown length', 'Never'], 2, WIDTH, HEIGHT),
     McQuestion('What terminal command opens the database fiftyville.db?', ['sqlite3 fiftyville.db', 'SELECT * FROM users', 'import sqlite3 from Python', 'SELECT * FROM fiftyville.db'], 0, WIDTH, HEIGHT),
     McQuestion('How can static websites change?', ['The developer changes the code', 'The user interacts with the display', 'They cannot be changed', 'They can be changed by many factors'], 0, WIDTH, HEIGHT),
     McQuestion('What is NOT a language used when using Flask?', ['JavaScript', 'HTML', 'CSS', 'C'], 3, WIDTH, HEIGHT),
@@ -87,7 +87,7 @@ while run:
     #draw a bullet at the location of the duck
     if btime < 30:
         btime += 1
-    if pygame.key.get_pressed()[pygame.K_SPACE] and btime == 30:
+    if pygame.mouse.get_pressed() and btime == 30:
         btime = 0
         bulletX = duck.guntipX
         bulletY = duck.guntipY
